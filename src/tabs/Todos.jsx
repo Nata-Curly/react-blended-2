@@ -6,20 +6,24 @@ export const Todos = () => {
   const [todos, setTodos] = useState([]);
 
   const onSubmit = text => {
-    const obj = {
-      text,
-      id: nanoid(),
-    };
-    console.log(obj);
-
-    setTodos([...todos, obj]);
+    setTodos([
+      ...todos,
+      {
+        text,
+        id: nanoid(),
+      },
+    ]);
   };
-  console.log(todos);
+
+  const handleDelete = id => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <>
       <Form onSubmit={onSubmit} />
       <Text textAlign="center">There are no any todos ...</Text>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onDelete={handleDelete} />
     </>
   );
 };
