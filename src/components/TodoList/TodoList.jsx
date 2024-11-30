@@ -1,3 +1,7 @@
-export const TodoList = () => {
-  return <h3>TodoList</h3>;
+export const TodoList = ({todos}) => {
+  return <ul>
+    {todos.map((todo) =>
+      <li key={todo.id}>{ todo.text}</li>
+    )}
+  </ul>;
 };
